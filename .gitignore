@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.uv/
+
+# JUCE build artifacts
+plugin/AINewPlug/Builds/
+plugin/AINewPlug/JuceLibraryCode/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+
+# Node
+node_modules/
+npm-debug.log*
+.env
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Audio / model artifacts that should NOT be committed
+# (the maqam LoRA in lora/ IS committed; large training outputs are not)
+lora_checkpoints/
+lightning_logs/
+demo_samples/
+*.ckpt
+
+# Temp files from plugin runs
+ai_input.wav
+ai_output.wav
+ai_output_ready.txt
+ai_output.wav.asd
+
+# Local secrets / config
+.env.local
+*.token
