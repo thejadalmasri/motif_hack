@@ -97,9 +97,9 @@ Examples produced with Motif's maqam fine-tuned model. Click a file on GitHub to
 - Output — Maqam Siba, kawala — [Arabic Kawala Style Transfer - Maqam Siba.wav](<Arabic Kawala Style Transfer - Maqam Siba.wav>)
   The model re-voices the violin solo below into a kawala performance in Maqam Siba, preserving the original melodic line.
 - Source (not generated) — [Jad Violin Solo, Maqam Siba](<Jad Violin Solo Arabic maqam Siba (Not Generated - Style Transfer).m4a>)
-  An excerpt of *The Disaster 11*, an original composition by **Jad Al Masri & Rabih Al Masri** — the input to the style transfer above.
+  An excerpt of *[The Disaster 11](https://youtu.be/UZXeIjzEu64?si=MdBEP6xk6oXiyaPU)*, an original composition by **Jad Al Masri & Rabih Al Masri** — the input to the style transfer above.
 
-*The Disaster 11* is an original composition by Jad Al Masri & Rabih Al Masri. The rights to the source recording and all audio examples here are owned by © Motif (MuseAI Pty Ltd t/a Motif Technologies); composition attributed to Jad Al Masri & Rabih Al Masri.
+*[The Disaster 11](https://youtu.be/UZXeIjzEu64?si=MdBEP6xk6oXiyaPU)* is an original composition by Jad Al Masri & Rabih Al Masri. The rights to the source recording and all audio examples here are owned by © Motif (MuseAI Pty Ltd t/a Motif Technologies); composition attributed to Jad Al Masri & Rabih Al Masri.
 
 ---
 
