@@ -1,0 +1,19 @@
+MOTIF — License Scope Notice
+
+The MIT License in LICENSE covers the source code in this repository:
+the JUCE plugin, the Ableton Extension, the Python servers, and all
+documentation.
+
+The following are NOT covered by the MIT License and are reserved as
+proprietary Motif IP, all rights reserved:
+
+  - The maqam audio dataset
+  - The dataset caption methodology (T1/T2/T3 tier system)
+  - The dataset captions themselves
+  - Any trained model weights (LoRA adapters or full models)
+  - The training methodology and hyperparameter choices
+
+These assets are also subject to the Stability AI Community License where
+applicable (for any work derived from Stable Audio 3).
+
+For inquiries: https://motiiif.com

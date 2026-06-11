@@ -4,14 +4,14 @@
 
 > Repository: `motif_hack` — this is the hackathon proof-of-concept. The name reserves `motif` itself for any productized version.
 
-![platform](https://img.shields.io/badge/platform-macOS-blue) ![status](https://img.shields.io/badge/status-proof%20of%20concept-orange) ![license](https://img.shields.io/badge/license-MIT-green)
+![platform](https://img.shields.io/badge/platform-macOS-blue) ![status](https://img.shields.io/badge/status-proof%20of%20concept-orange) ![license](https://img.shields.io/badge/license-MIT%20%2B%20NOTICE-green)
 
 > Winner — **Stability AI Challenge**, Music Hackspace × Berklee Hackathon (June 7, 2026)
 > Third place — **Ableton Challenge**
 
 MOTIF is an end-to-end pipeline that demonstrates how a fine-tuned generative audio model can serve musical traditions that are systematically underrepresented in commercial training data. The project consists of three components:
 
-1. **A LoRA adapter** trained on 14 Arabic maqam recordings (~20,000 steps, Stable Audio 3 medium) that teaches the base model microtonal pitch structures, traditional ornamentation, and instrument timbres it cannot produce on its own
+1. **A LoRA adapter** trained on Arabic maqam recordings that teaches Stable Audio 3 medium microtonal pitch structures, traditional ornamentation, and instrument timbres the base model cannot produce on its own. **The trained weights, dataset, and caption methodology are proprietary Motif IP — see [`NOTICE`](NOTICE).**
 2. **A local Python API** (FastAPI + Flask bridge) that serves the LoRA-augmented model for inference
 3. **A JUCE VST3 plugin** with deep Ableton Live integration via the Extensions SDK, allowing audio generation to flow directly into a new track inside the DAW
 
@@ -66,11 +66,10 @@ The three components communicate over `localhost`. The plugin is a normal VST3 t
 ```
 motif_hack/
 ├── README.md                       ← this file (overview + setup)
-├── LICENSE                         ← MIT
+├── LICENSE                         ← MIT (code only)
+├── NOTICE                          ← license scope: what MIT does NOT cover
 ├── lora/
-│   ├── README.md                   ← LoRA training reference
-│   ├── maqam-step=10000-epoch=714.safetensors
-│   └── dataset_captions/           ← T3-tier captions used for training
+│   └── README.md                   ← stub; weights/dataset/captions are proprietary
 ├── server/
 │   ├── stable_audio_server.py      ← FastAPI server (port 8765)
 │   ├── server.py                   ← Flask bridge for JUCE (port 8080)
@@ -82,7 +81,7 @@ motif_hack/
 │   ├── Readme.pdf                  ← detailed plugin guide (Chris Powers)
 │   └── README.md                   ← plugin quick reference
 └── docs/
-    └── (architecture diagrams, screenshots)
+    └── (audio examples, screenshots — to be populated)
 ```
 
 ---
@@ -91,6 +90,8 @@ motif_hack/
 
 You need three servers running and the VST3 installed. Detailed instructions for each piece are in their respective READMEs.
 
+> **Note on the LoRA**: this repository contains the open-source plumbing (plugin, server, extension) but does **not** ship the trained LoRA weights, dataset, or caption methodology. To reproduce the full end-to-end demo, you need access to those proprietary assets — contact the team via [motiiif.com](https://motiiif.com). The code below assumes you have placed a compatible `.safetensors` LoRA checkpoint in `lora_checkpoints/`.
+
 ### 1. Clone
 
 ```bash
@@ -98,7 +99,7 @@ git clone https://github.com/astronarta22/motif_hack.git
 cd motif_hack
 ```
 
-### 2. Set up the LoRA + Stable Audio runtime
+### 2. Set up the Stable Audio runtime
 
 ```bash
 # Clone Stable Audio 3 in a sibling folder (not inside this repo)
@@ -113,12 +114,10 @@ uv sync --extra lora
 # https://huggingface.co/stabilityai/stable-audio-3-medium first)
 uv run python -c "from huggingface_hub import login; login()"
 
-# Place the LoRA checkpoint
+# Place your LoRA checkpoint in lora_checkpoints/
 mkdir -p lora_checkpoints
-cp ../motif_hack/lora/maqam-step=10000-epoch=714.safetensors lora_checkpoints/
+# (copy your .safetensors LoRA file into lora_checkpoints/ here)
 ```
-
-> **Note on LoRA training**: the 10,000-step checkpoint shipped in this repo was trained on a Google Colab H100 GPU using the 14-file maqam dataset and T3-tier captions in `lora/dataset_captions/`. The training code itself lives in the official [Stable Audio 3 repository](https://github.com/Stability-AI/stable-audio-3) (`scripts/train_lora.py`); we do not duplicate it here. See `lora/README.md` for the exact training command and rationale.
 
 ### 3. Start the three servers (in three terminals)
 
@@ -127,7 +126,7 @@ cp ../motif_hack/lora/maqam-step=10000-epoch=714.safetensors lora_checkpoints/
 cd stable-audio-3
 uv run python /path/to/motif_hack/server/stable_audio_server.py \
     --model medium \
-    --lora-ckpt-path lora_checkpoints/maqam-step=10000-epoch=714.safetensors \
+    --lora-ckpt-path lora_checkpoints/your_lora.safetensors \
     --lora-strength 1.0
 ```
 
@@ -186,7 +185,7 @@ This is a hackathon-quality prototype with deliberate limitations that the team 
 - **Ableton Live 12 Beta required.** The auto-track feature depends on the Extensions SDK, which is in early access and only available in the Beta. The plugin functions as a standalone or in any DAW for the generation step itself, but the new-track behavior is Live 12 Beta only.
 - **macOS only.** JUCE itself is cross-platform, but the Extension SDK integration and the Apple Silicon MPS inference path are macOS-specific. A Windows port is feasible but not currently scoped.
 - **No streaming.** Generation is one-shot (~30–90s round-trip). Real-time/live processing would require a completely different model and architecture.
-- **LoRA training scale.** The 14-file dataset is sufficient for a proof of concept but not for a robust production model, given the breadth of instruments and scales in Arabic maqam. A serious version would need on the order of 100–500 representative recordings.
+- **Dataset scale.** The hackathon LoRA was trained on a small proof-of-concept dataset. A robust production model requires substantially more representative recordings, given the breadth of instruments and scales in Arabic maqam. The dataset and training methodology are proprietary Motif IP.
 
 ---
 
@@ -203,4 +202,8 @@ This is a hackathon-quality prototype with deliberate limitations that the team 
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+Source code in this repository is licensed under the [MIT License](LICENSE).
+
+The trained model weights, dataset, dataset captions, and training methodology
+are **proprietary Motif IP, all rights reserved**, and are **not** covered by
+the MIT License. See [`NOTICE`](NOTICE) for the full scope.
