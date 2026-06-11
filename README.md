@@ -86,6 +86,23 @@ motif_hack/
 
 ---
 
+## Audio examples
+
+Examples produced with Motif's maqam fine-tuned model. Click a file on GitHub to play it in the browser.
+
+**Generation (text-to-audio)**
+- Oud in Maqam Bayati — [Arabic Oud Maqam Bayati.wav](<Arabic Oud Maqam Bayati.wav>)
+
+**Style transfer**
+- Output — Maqam Siba, kawala — [Arabic Kawala Style Transfer - Maqam Siba.wav](<Arabic Kawala Style Transfer - Maqam Siba.wav>)
+  The model re-voices the violin solo below into a kawala performance in Maqam Siba, preserving the original melodic line.
+- Source (not generated) — [Jad Violin Solo, Maqam Siba](<Jad Violin Solo Arabic maqam Siba (Not Generated - Style Transfer).m4a>)
+  An excerpt of *The Disaster 11*, an original composition by **Jad Al Masri & Rabih Al Masri** — the input to the style transfer above.
+
+*The Disaster 11* is an original composition by Jad Al Masri & Rabih Al Masri. The rights to the source recording and all audio examples here are owned by © Motif (MuseAI Pty Ltd t/a Motif Technologies); composition attributed to Jad Al Masri & Rabih Al Masri.
+
+---
+
 ## Quick start
 
 You need three servers running and the VST3 installed. Detailed instructions for each piece are in their respective READMEs.
