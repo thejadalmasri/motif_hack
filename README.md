@@ -11,7 +11,7 @@
 
 MOTIF is an end-to-end pipeline that demonstrates how a fine-tuned generative audio model can serve musical traditions that are systematically underrepresented in commercial training data. The project consists of three components:
 
-1. **A LoRA adapter** trained on Arabic maqam recordings that teaches Stable Audio 3 medium microtonal pitch structures, traditional ornamentation, and instrument timbres the base model cannot produce on its own. **The trained weights, dataset, and caption methodology are proprietary Motif IP — see [`NOTICE`](NOTICE).**
+1. **A LoRA adapter** trained on Arabic maqam recordings (owned by @thejadalmasri) that teaches Stable Audio 3 medium microtonal pitch structures, traditional ornamentation, and instrument timbres the base model cannot produce on its own. **The trained weights, dataset, and caption methodology are proprietary Motif IP — see [`NOTICE`](NOTICE).**
 2. **A local Python API** (FastAPI + Flask bridge) that serves the LoRA-augmented model for inference
 3. **A JUCE VST3 plugin** with deep Ableton Live integration via the Extensions SDK, allowing audio generation to flow directly into a new track inside the DAW
 
